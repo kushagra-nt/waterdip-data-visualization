@@ -6,12 +6,38 @@ type Props = {
   data: HotelBooking[]
 }
 
-// [day, visitorsCount]
-type FormattedData = [Date, number]
+// [timestamp, visitorsCount]
+type FormattedData = [number, number]
+
+type ChartSeries = {
+  name: string,
+  data: FormattedData[]
+}[]
+
+type ChartOptions = {
+  chart: {
+    type: 'line',
+    zoom: {
+      enabled: true
+    },
+    // width: "90%"
+  },
+  xaxis: {
+    type: 'datetime',
+    title: {
+      text: 'Day'
+    }
+  },
+  yaxis: {
+    title: {
+      text: 'Visitors'
+    }
+  }
+}
 
 const TimeSeriesChart = ({data}: Props) => {
 
-  const [options] = useState({
+  const [options] = useState<ChartOptions>({
 		chart: {
       type: 'line',
       zoom: {
@@ -32,7 +58,7 @@ const TimeSeriesChart = ({data}: Props) => {
     }
 	})
 	
-	const [series, setSeries] = useState<{name:string,data: FormattedData[]}[]>([{
+	const [series, setSeries] = useState<ChartSeries>([{
 		name: 'visitors',
 		data: []
 	}])
@@ -87,7 +113,7 @@ function formatData(data: HotelBooking[]):FormattedData[]{
   rawData.sort((a, b) => (parseInt(a[0]) - parseInt(b[0])));
 
   const formattedData: FormattedData[] = rawData.map(entry => {
-    return [new Date(parseInt(entry[0])),entry[1]];
+    return [parseInt(entry[0]),entry[1]];
   })
 
   return formattedData;

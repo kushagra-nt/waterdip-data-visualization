@@ -21,7 +21,7 @@ type ChartOptions = {
     enabled: boolean,
   },
   stroke: {
-    curve: string,
+    curve: 'smooth',
   },
   xaxis: {
     labels: {
@@ -34,7 +34,7 @@ type ChartOptions = {
     },
   },
   title?: {
-    text: number,
+    text: string,
     offset: number,
     style: {
       fontSize: string
@@ -89,10 +89,10 @@ const Sparkline1 = ({data}: Props) => {
 
     setOptions(prev => ({
       ...prev,
-      title: {
-        text: total,
-        offset: 0,
-        style: {
+        title: {
+          text: total.toString(),
+          offset: 0,
+          style: {
           fontSize: '24px'
         }
       }
