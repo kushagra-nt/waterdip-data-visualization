@@ -40,12 +40,12 @@ const DataVisual = () => {
 		<div className='w-full justify-center align-middle my-10 px-10'>
 
 			{/* date filter selection */}
-			<div className='flex gap-5 justify-center mb-10 divide-x-4 divide-blue-300'>
-				<div className='flex'>
+			<div className='flex gap-5 justify-center flex-col sm:flex-row mx-3 mb-10 lg:divide-x-4 lg:divide-blue-300'>
+				<div className='flex justify-center'>
 					<h4 className='font-bold ml-3'>From:</h4>
 					<input type="date" value={startDate} onChange={(e)=> {setStartDate(e.target.value)}} />
 				</div>
-				<div className='flex'>
+				<div className='flex justify-center'>
 					<h4 className='font-bold ml-4'>To:</h4>
 					<input type="date" value={endDate} onChange={(e)=> {setEndDate(e.target.value)}} />
 				</div>
